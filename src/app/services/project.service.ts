@@ -14,7 +14,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ProjectService {
-  projectsUrl:string = 'https://my-json-server.typicode.com/Yakelixir/fg-frontend-test/db';
+  projectsUrl:string = 'https://my-json-server.typicode.com/Yakelixir/fg-frontend-test/db/projects';
   projectsLimit = '?_limit=5'
   
   constructor(private http:HttpClient) { }
