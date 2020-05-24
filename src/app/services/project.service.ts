@@ -1,37 +1,30 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { Project } from '../models/project';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':'application/json'
+  })
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-
+  projectsUrl:string = 'https://my-json-server.typicode.com/Yakelixir/fg-frontend-test/db';
+  projectsLimit = '?_limit=5'
+  
   constructor(private http:HttpClient) { }
 
-  getProjects() {
-    return [
-      {
-        id: 1,
-        name: 'Founders Game',
-        description: 'A project to help people share value',
-        idea_id: 1,
-        active: true
-      },
-      {
-        id: 2,
-        name: 'Whyz Owl',
-        description: 'A project to help people find the right team',
-        idea_id: 2,
-        active: false
-      },
-      {
-        id: 3,
-        name: 'Tech Into Growth',
-        description: 'A project to help people build now that they have sharing and the right team',
-        idea_id: 3,
-        active: false
-      }
-    ]
+  getProjects():Observable<Project[]> {
+    return this.http.get<Project[]>(`$(this.projectsUrl)$(this.projectsLimit)`);
   }
   
+  //Toggle Completed
+  toggleCompleted(project: Project):Observable<any> {
+    const url = `${this.projectsUrl}/${project.id}`;
+    return this.http.put(url, project, httpOptions)
 }
