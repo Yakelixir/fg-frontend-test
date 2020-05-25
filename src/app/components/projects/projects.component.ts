@@ -20,4 +20,17 @@ export class ProjectsComponent implements OnInit {
     
   }
 
+  // critical
+  deleteProject(project:Project) {
+    // Remove From UI
+    this.projects = this.projects.filter(t => t.id !== project.id);
+    // Remove from server
+    this.projectService.deleteProject(project).subscribe();
+  }
+
+  addProject(project:Project) {
+    this.projectService.addProject(project).subscribe(project => {
+      this.projects.push(project);
+    });
+  }
 }

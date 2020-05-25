@@ -25,6 +25,17 @@ export class ProjectService {
     return this.http.get<Project[]>(this.projectsUrl);
   }
   
+  // Delete Project
+  deleteProject(project:Project):Observable<Project> {
+    const url = `${this.projectsUrl}/${project.id}`;
+    return this.http.delete<Project>(url, httpOptions);
+  }
+
+  // Add Project
+  addProject(project:Project):Observable<Project> {
+    return this.http.post<Project>(this.projectsUrl, project, httpOptions);
+  }
+
   //Toggle Completed
   toggleCompleted(project: Project):Observable<any> {
     const url = `${this.projectsUrl}/${project.id}`;

@@ -38,7 +38,6 @@ export class ProjectComponent implements OnInit {
   }
   onDelete(project) {
     this.deleteProject.emit(project);
-    console.log('delete');
   }
   
 }
