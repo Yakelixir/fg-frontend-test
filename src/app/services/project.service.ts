@@ -15,11 +15,12 @@ const httpOptions = {
 })
 export class ProjectService {
   projectsUrl:string = 'https://my-json-server.typicode.com/Yakelixir/fg-frontend-test/projects';
-  projectsLimit = '?_limit=5'
+  projectsLimit = '?_limit=5';
   
   constructor(private http:HttpClient) { }
 
   getProjects():Observable<Project[]> {
+    // Add a Limit by switching above and uncommenting this line
     // return this.http.get<Project[]>(`$(this.projectsUrl)$(this.projectsLimit)`);
     return this.http.get<Project[]>(this.projectsUrl);
   }

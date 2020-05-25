@@ -10,7 +10,7 @@ import { Project } from 'src/app/models/project';
 })
 export class ProjectComponent implements OnInit {
   @Input() project: Project;
-  // @Output() deleteProject: EventEmitter<Project> = new EventEmitter();
+  @Output() deleteProject: EventEmitter<Project> = new EventEmitter();
 
   constructor(private projectService:ProjectService) { }
 
@@ -37,6 +37,7 @@ export class ProjectComponent implements OnInit {
       console.log(project));
   }
   onDelete(project) {
+    this.deleteProject.emit(project);
     console.log('delete');
   }
   
