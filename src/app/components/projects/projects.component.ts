@@ -28,6 +28,8 @@ export class ProjectsComponent implements OnInit {
     this.projectService.deleteProject(project).subscribe();
   }
 
+  // Add a proejct with the service class
+  // subscribe to that and push it to the array
   addProject(project:Project) {
     this.projectService.addProject(project).subscribe(project => {
       this.projects.push(project);
