@@ -4,4 +4,5 @@ export class Project {
     description:string;
     idea_id:number;
     active:boolean;
+    department:string;
 }
